@@ -1,11 +1,18 @@
 class Solution(object):
     def twoSum(self, nums, target):
-        a=[]
-        n=len(nums)
-        for i in range(0,n):
-            for j in range(i+1,n):
-                if nums[i]+nums[j]==target:
-                    a.append(i)
-                    a.append(j)
-                    return a
-        
+      
+        arr = [(n, i) for i, n in enumerate(nums)]
+        arr.sort()  # sort by value
+
+        left, right = 0, len(arr) - 1
+
+        while left < right:
+            s = arr[left][0] + arr[right][0]
+            if s == target:
+                return [arr[left][1], arr[right][1]]
+            elif s < target:
+                left += 1
+            else:
+                right -= 1
+
+        return None
