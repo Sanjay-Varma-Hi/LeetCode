@@ -1,11 +1,11 @@
 class Solution(object):
     def findLHS(self, nums):
-        freq = {}
-        for x in nums:
-            freq[x] = freq.get(x,0)+1
-        
-        longest = 0
-        for x in freq:
-            if x+1 in freq:
-                longest = max(freq[x]+freq[x+1],longest)
-        return longest
+        nums.sort()
+        l= 0
+        best = 0
+        for r in range (len(nums)):
+            while nums[r]- nums[l] >1:
+                l=l+1
+            if nums[r] - nums[l] == 1:
+                best = max(best, r-l+1)
+        return best
